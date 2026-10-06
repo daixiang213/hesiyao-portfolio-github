@@ -1,0 +1,40 @@
+.blur-text-root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.blur-text-segment {
+  display: inline-block;
+  will-change: transform, filter, opacity;
+}
+
+.blur-line-break {
+  flex-basis: 100%;
+  width: 0;
+  height: 0;
+}
+
+.brand-mark.blur-text-root,
+.contact-pill.blur-text-root,
+.primary-btn.blur-text-root {
+  align-items: center;
+  justify-content: center;
+}
+
+.blur-text-root.is-static-blur .blur-text-segment {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translate3d(0, var(--blur-offset, -42px), 0) scale(.96);
+}
+
+.blur-text-root.is-static-blur.is-blur-visible .blur-text-segment {
+  animation: blurTextStaticIn 720ms cubic-bezier(.16, 1, .3, 1) forwards;
+  animation-delay: var(--blur-delay, 0ms);
+}
+
+@keyframes blurTextStaticIn {
+  0% { opacity: 0; filter: blur(12px); transform: translate3d(0, var(--blur-offset, -42px), 0) scale(.96); }
+  55% { opacity: .68; filter: blur(5px); transform: translate3d(0, var(--blur-bounce, 4px), 0) scale(1.01); }
+  100% { opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0) scale(1); }
+}
